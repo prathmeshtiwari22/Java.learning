@@ -1,37 +1,46 @@
-class TravelAgencies{
+import java.util.Scanner;
+
+class TravelAgencies {
     private int regNo;
     private String agencyName;
     private String pakageType;
     private int price;
     private boolean flightFacility;
-    //constructor
-    public TravelAgencies(int regNo,String agencyName,String pakageType,int price,boolean flightFacility){
-        this.regNo=regNo;
-        this.agencyName=agencyName;
+
+    // Constructor
+    public TravelAgencies(int regNo, String agencyName, String pakageType, int price, boolean flightFacility) {
+        this.regNo = regNo;
+        this.agencyName = agencyName;
         this.pakageType = pakageType;
-        this.price=price;
-        this.flightFacility;
+        this.price = price;
+        this.flightFacility = flightFacility;   // ❗ fixed
     }
-    // setters and getters
-    public int getregNo(){
+
+    // Getters and Setters
+    public int getRegNo() {
         return regNo;
     }
-    public void setregNo(int regNo){
-        this.regNo=regNo;
+
+    public void setRegNo(int regNo) {
+        this.regNo = regNo;
     }
-    public String getagencyName(){
+
+    public String getAgencyName() {
         return agencyName;
     }
-    public void setagencyName(String agencyName){
-        this.agencyName=agencyName;
+
+    public void setAgencyName(String agencyName) {
+        this.agencyName = agencyName;
     }
-    public int getprice(){
+
+    public int getPrice() {
         return price;
     }
-    public void setprice(int price)
-    {
-        this.price=price;
+
+    public void setPrice(int price) {
+        this.price = price;
     }
+
     public boolean isFlightFacility() {
         return flightFacility;
     }
@@ -39,50 +48,66 @@ class TravelAgencies{
     public void setFlightFacility(boolean flightFacility) {
         this.flightFacility = flightFacility;
     }
-    public String getpakageType(){
+
+    public String getPakageType() {
         return pakageType;
     }
+
     public void setPakageType(String pakageType) {
         this.pakageType = pakageType;
     }
 }
-class Solution{
-    public static int findAgencywithHighestPackagePrice(TravelAgencies[] agencies){
-        int maxPrice = agencies[0].getprice();
-        for(int i=1;i<agencies.length;i++){
-            if(angencies.getprice()>maxAgencies.getprice()){
-                maxPrice=agencies[i].getprice();
+
+class Solution {
+
+    public static int findAgencyWithHighestPackagePrice(TravelAgencies[] agencies) {
+        int maxPrice = agencies[0].getPrice();
+
+        for (int i = 1; i < agencies.length; i++) {
+            if (agencies[i].getPrice() > maxPrice) {
+                maxPrice = agencies[i].getPrice();
             }
         }
         return maxPrice;
     }
-    public static TravelAgencies agencyDetailsForGivenIDandType(TravelAgencies[] agencies,int regNo,String packageType){
-         for(TravelAgencies agency: agencies){
-             if(agency.isFlightFacility() && agency.getregNo = regNo && agency.getpakageType().equalsIgnoreCase(packageType)){
-                 return agency;
-             }
-         }
-         return null;
+
+    public static TravelAgencies agencyDetailsForGivenIdAndType(
+            TravelAgencies[] agencies, int regNo, String packageType) {
+
+        for (TravelAgencies agency : agencies) {
+            if (agency.isFlightFacility() &&
+                agency.getRegNo() == regNo &&
+                agency.getPakageType().equalsIgnoreCase(packageType)) {
+
+                return agency;
             }
-            
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
         TravelAgencies[] agencies = new TravelAgencies[4];
 
-        for(int i=0;i<4;i++){
+        for (int i = 0; i < 4; i++) {
             int regNo = sc.nextInt();
             sc.nextLine();
             String agencyName = sc.nextLine();
             String packageType = sc.nextLine();
             int price = sc.nextInt();
             boolean flightFacility = sc.nextBoolean();
-            agencies[i] = new TravelAgencies(regNo,agencyName,packageType,price,flightFacility);
+
+            agencies[i] = new TravelAgencies(regNo, agencyName, packageType, price, flightFacility);
         }
+
         int searchRegNo = sc.nextInt();
         sc.nextLine();
         String searchPackageType = sc.nextLine();
+
         int highestPrice = findAgencyWithHighestPackagePrice(agencies);
         System.out.println(highestPrice);
+
         TravelAgencies result =
                 agencyDetailsForGivenIdAndType(agencies, searchRegNo, searchPackageType);
 
@@ -92,5 +117,4 @@ class Solution{
 
         sc.close();
     }
-    
 }
